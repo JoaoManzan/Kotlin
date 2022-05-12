@@ -77,8 +77,25 @@
 
             O GitHub é um serviço onde é possível gerenciar, armazenar e versionar
         repositórios, funcionando, geralmente, em conjunção ao git.
+            Para subir um repositório da sua maquina para o GitHub, é preciso criar um
+        repositório na sua conta GitHub e então existem vários métodos.
+            O mais simples é adicionar o arquivo como uma pasta direto pelo GitHub,
+        porem dificulta o versionamento.
+            Outra opção é adicionar a conta GitHub a sua IDE, commitar o projeto e subir
+        ele para o link html do repositório ja criado.
+            A terceira opção é pelo GitBash, CMD ou semelhante, e seguir os seguintes
+        comandos:
+
+            git init (na pasta escolhida para subir)
+            git add README.md
+            git add .
+            git commit -m "first commit"
+            git branch -M main
+            git remote add origin https://github.com/user/repository.git
+            git push -u origin master
 
 
+    API Rest
 
 
 
