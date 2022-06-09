@@ -68,7 +68,8 @@
         git clean -f                              Limpa o working directory.
         git clone *nomePasta* / *novaPasta*       Clona o repositório para uma nova pasta.
         git clone https://github.com/ *link*      Clona o repositório do link para uma pasta.
-
+        git pull                                  Baixa as mudanças do repositório.
+        git merge                                 Junta as mudanças.
 
 
 
@@ -93,6 +94,13 @@
             git branch -M main
             git remote add origin https://github.com/user/repository.git
             git push -u origin master
+
+    README.txt
+
+            O arquivo readme é uma apresentação do projeto e pode ser alterada com base
+        em html.
+            Uma dica é usar o site https://dillinger.io/ que ja possui uma serie de
+        templates, basta alterar o conteúdo.
 
 
     API Rest

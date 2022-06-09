@@ -62,7 +62,7 @@
 
     Parâmetros                                                          ex2
 
-            Ao usar uma função, é necessário inputar seus parâmetros:
+            Ao usar uma função, é necessário imputar seus parâmetros:
 
         fun *nomedaFunção*(*variável*: *tipo*, *variável2* = *valor2*) : *tipodeSaida* {
             *código*
@@ -72,7 +72,6 @@
             }
 
             Porém é possível contornar isso de algumas maneiras:
-
             Atribuindo um valor "default" a variável que pode não ser usada, como o "" ou o 0:
 
         fun *nomedaFunção*(*variável*: *tipo*, *variável2* = "")
@@ -90,15 +89,10 @@
             A função .size é usada para calcular o tamanho de um vetor(vararg).
             Ja as funções: .isEmpty e .isNotEmpty , são usadas para checar se um vetor
         contem ou não algum dado.
+
             fun *nomeDaFunção*( vararg *nome*: *tipo*){
                 if(*nom*.isNotEmpty()){
                 *operação*
-                }
-
-            Ao usar uma função com vararg é possível alocar ela como um tipo genérico,
-            alocando uma letra ou palavra como tipo:
-            fun <*nomeTipo*>*nomeDaFunção*( vararg *nome*: *nomeTipo*){
-               *operação*
                 }
 
 
@@ -132,9 +126,25 @@
 *//*
     Att 2022
 
+        Generics
+
+            Ao usar uma função com vararg é possível alocar ela como um tipo genérico,
+        alocando uma letra ou palavra como o tipo:
+            fun <*nomeTipo*>*nomeDaFunção*( vararg *nome*: *nomeTipo*){
+                *operação*
+            }
+            Normalmente usam-se as letras T, J ou K, precisa-se ser colocado entre <>
+        antes do nome da função e pode-se ter quantas generics forem necessárias.
+
+        vararg
+
+            Adendo importante, a vararg pode estar em uma função com outros parâmetros
+        pré-estabelecidos, porém para a função funcionar ela precisa ser a última.
+            Uma função com vararg de tipo genérico é chamada array.
 
 
 */
+
 fun endereco( rua: String = "", cidade: String, estado: String, cep: Int = 0){  //ex1
     println("rua: $rua, cep: $cep")
     println("cidade: $cidade, estado: $estado")

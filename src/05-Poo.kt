@@ -13,7 +13,7 @@
                 As classes são arquivos que contem Funções (métodos) e variáveis
             (atributos), funcionando como um pacote de funções com variáveis de
             entrada. Ao ser chamada na main, aloca-se a um value e ela passa a ser
-            um objeto instanciado, virando um comando do qual puxa-se métodos e
+            um objeto instanciado, virando um comando do qual puxam-se métodos e
             atributos mais facilmente.
 
                 class *nomeClasse* (var *nomeVar*: *tipoVar*, var *nomeVar2*"..." ) {
@@ -31,7 +31,7 @@
             construtores sao ativados automaticamente pela IDE para facilitar.
                 É basicamente o responsável por voce não ter que escrever o nome
             e o tipo das variáveis ao puxar uma função.
-                Porém é possível estabelecer mais de um construtor para a fim de
+                Porém, é possível estabelecer mais de um construtor para a fim de
             ter mais de um modo de se puxar uma classe, para, por exemplo, puxar
             com uma variável a mais, porém nunca a menos.
                 Para integrar uma variável do construtor a um método dentro da classe
@@ -80,7 +80,7 @@
         Classes Enum
 
                 Classes enum é um comando ao criar uma classe, identificando-a como
-            uma lista, na qual qualquer string escrita passa a ser um comando dentro
+            uma lista, a qual qualquer string escrita passa a ser um comando dentro
             da classe:
 
             enum class *nomeClasse* {
@@ -126,7 +126,7 @@
 
         Herança / Open Class
 
-                É um conceito dentro de poo, no qual uma função(Chamada pai) é puxada
+                É um conceito dentro de poo, o qual uma função(Chamada pai) é puxada
             para poder ser executada por outra função (Chamada filha). Ela é util pela
             reutilização e consequente "limpeza" no código.
                 Para isso é necessário usar o tipo de classe chamado open class, que

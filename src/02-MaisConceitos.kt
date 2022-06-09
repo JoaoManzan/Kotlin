@@ -168,6 +168,13 @@ import kotlin.math.*
             it.*método*
             }
 
+            Throw
+
+            O Comando throw é usado para intencionalmente puxar um erro especifico,
+        escrito após o comando. O mesmo pode ser muito usado em classes de teste.
+
+
+
 */
 
 fun trans(n1: Int) {
