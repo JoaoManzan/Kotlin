@@ -142,6 +142,13 @@
         pré-estabelecidos, porém para a função funcionar ela precisa ser a última.
             Uma função com vararg de tipo genérico é chamada array.
 
+        Any, Unit e Nothing
+
+            Any é o tipo base das variáveis, sendo assim, aceita qualquer tipo de valor.
+            Unit é o tipo "sem valor". Como tipo de função serve para não precisar de return
+            Já o nothing é um tipo de função usado para lançar uma exceção em conjunto ao
+        método To Do, que gera uma mensagem de erro. Essa estrutura é usada como place
+        holder.
 
 */
 
@@ -164,9 +171,18 @@ fun mediaNota2( vararg notas: Float){                                           
     }
 }
 
-fun <gas>mediaNota3( vararg valores: gas){                                            //ex3
+fun <gas>mediaNota3( vararg valores: gas){                                      //ex3
     for (valor in valores) println(valor)
 }
+
+fun tipoAny(any: Any): Unit{                                                         //ex5
+    println("aceita: $any")
+}
+
+fun aImplementar(): Nothing{
+    TODO ("Função ainda não implementada")
+}
+
 
 fun main (){
 
@@ -199,6 +215,10 @@ fun main (){
     println(str.startsWith("o", 0, true ))
     println(str.endsWith("á"))
 
-
+    tipoAny("String")
+    tipoAny('C')
+    tipoAny(10)
+    tipoAny(10.0f)
+    tipoAny(true)
 
 }

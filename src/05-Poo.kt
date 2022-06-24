@@ -28,15 +28,16 @@
 
                 São uma parte do código responsável por puxar as variáveis ao se
             instanciar uma classe ou função, por exemplo. No kotlin geralmente os
-            construtores sao ativados automaticamente pela IDE para facilitar.
+            construtores são ativados automaticamente pela IDE para facilitar.
                 É basicamente o responsável por voce não ter que escrever o nome
             e o tipo das variáveis ao puxar uma função.
-                Porém, é possível estabelecer mais de um construtor para a fim de
-            ter mais de um modo de se puxar uma classe, para, por exemplo, puxar
-            com uma variável a mais, porém nunca a menos.
-                Para integrar uma variável do construtor a um método dentro da classe
-            é preciso declara-la como null na classe e usar o comando:
-             this.*nomeVar* = *nomeVar* , dentro do construtor
+                Porém, é possível estabelecer mais de um construtor para ter mais
+            de um modo de se puxar uma classe, para, por exemplo, puxar com uma
+            variável a mais, porém nunca a menos.
+                Para integrar uma variável do construtor a um método na classe é
+            preciso declara-la como null ou default na classe e usar o comando:
+
+            this.*nomeVar* = *nomeVar* , dentro do construtor
 
                 class *nomeClasse* (var *nomeVar*: *tipoVar*) {
 
@@ -54,9 +55,11 @@
 
                 Getters e setters são usados para o incapsulamento de variáveis, para,
             por exemplo, negar o acesso ou a modificação a uma variável que não
-            pode ser alterada. No java é necessário codificar o incapsulamento, porém
-            no kotlin ele é feito automaticamente pela ide, ainda respeitando os
-            parâmetros. Em java o nome disso é boilerplate.
+            pode ser alterada. Eles são sempre executados respectivamente quando uma
+            variável é puxada ou quando uma variável tenta ser alterada.
+                No java é necessário codificar o incapsulamento, porém no kotlin ele é
+            feito automaticamente pela IDE, ainda respeitando os parâmetros. Em java o nome
+            disso é boilerplate.
 
 
 
@@ -64,7 +67,10 @@
 
                 Field é uma extensão de getters e setters, pois apesar de eles serem
             executados automaticamente pelo kotlin, o comando field é usado para
-            identificar o uso de um getters ou setter modificado.
+            evitar uma chamada recursiva de, por exemplo, um get com um return ficarem
+            chamando um ao outro. Ele serve para representar a var inicial sem iniciar
+            um get ou set e gerar um looping.
+
 
             var *nomeVar*: *tipoVar* = *valorVar*
                 get() {
@@ -77,15 +83,42 @@
                 }
 
 
-        Classes Enum
+        Enum Classes
 
-                Classes enum é um comando ao criar uma classe, identificando-a como
-            uma lista, a qual qualquer string escrita passa a ser um comando dentro
-            da classe:
+                Enum class é um comando ao criar uma classe, identificando-a como
+            uma lista, a qual qualquer valor passa a ser um comando da classe:
 
-            enum class *nomeClasse* {
-            *texto1*,*texto2*,*texto3*(...)
-            }
+                enum class *nomeClasse* {
+                *texto1*,*texto2*,*texto3*(...)
+                }
+
+                *nomeClasse*.*texto2*
+
+                Essa classe tambem passa a ser um tipo de variável.
+
+                fun *nome*(*var* : *nomeClasse*){
+                }
+
+                Com o comando .values(), é possível puxar todos os valores em uma enum class
+
+                 *nomeClasse*.values()
+
+                Além disso, é possível adicionar uma variável que será alocado aos valores.
+
+                enum class *nomeClasse*(val *var* : *tipo*) {
+                *texto1*(*var*:),*texto2*(*var*:),*texto3*(*var*:)(...)
+                }
+
+                Por último cada valor da enum class pode ter seu próprio bloco de comandos,
+            como um override para mudar o texto a ser escrito ao rodar o programa.
+
+                enum class *nomeClasse* {
+                *texto1*{
+                override fun .toString(): String{
+                    return "*novoTexto*"
+                }},
+                *texto2*,*texto3*(...)
+                }
 
 
         Data Class
@@ -94,17 +127,16 @@
             é possível codar dentro dela, porém a convenção é de ser uma linha
             simples apenas para agrupamento de dados.
                 Além disso, o data class converte os dados dentro dela via override
-            com 3 comandos: o .toStirng, que converte o print da variável; o .hashCode
+            com 3 comandos: o .toString, que converte o print da variável; o .hashCode
             que gera um código especifico para a classe de acordo com seus valores;
             e o .equals que permite comparar duas classes.
                 O comando implícito .equals é o responsável por, ao usar a data class,
             fazer com que os dados dentro dela sejam lidos como valores e não como
-            posições dentro da memória.
+            posições na memória.
                 Já o comando .hashcode é responsável por alocar um código de
             identificação a uma variável. Dentro de uma data class qualquer variável
-            que for atribuída com um valor da data class passa a ter o mesmo hashcode
-            se possuir o mesmo valor e orbitar em um hashcode próximo com valores
-            diferentes.
+            atribuída com um valor da data class passa a ter o mesmo hashcode se
+            possuir o mesmo valor e orbitar em um hashcode próximo com valores diferentes.
                 Além desses ela também possui um comando implícito de .copy, que permite
             copiar todos os valores de uma variável para outra.
 
@@ -136,8 +168,9 @@
                 fun *nomeFunção* (){
                      *Método*
                      }
-    class *nomeC* (*nomeVarOC*: *tipoVarOC* var *nomeVar*: *tipoVar*):*nomeOC*(*nomeVarOC*){
-                fun *nomeFunção* (){
+            class *nomeC* (*nomeVarOC*: *tipoVarOC* var *nomeVar*: *tipoVar*):
+            *nomeOC*(*nomeVarOC*){
+               fun *nomeFunção* (){
                     *Método*
                     }
 
@@ -194,18 +227,58 @@
             as permissões dela, porém no kotlin ele ja é implícito no código,
             então não precisa ser escrito.
 
+ *//*
+    Att 2022
 
+        Classes
 
+                Classes são formadas por comportamentos e atributos e geram objetos.
+                Os comportamentos são os métodos, as funções;
+                Os atributos são as características, as variáveis;
+                Já os objetos são gerados ao instanciar uma class. Ao fazer isso gera-se
+            um espaço de memória alocado para o objeto.
 
- */
+                    val *nomeClass*: *nomeClass* = *nomeClass*(*parâmetros*)
+                           l: objeto     l: tipo      l: instancia
 
+                Ao criar parâmetros para uma class é necessário designa-los como val ou var
+            para poder puxar os parâmetros corretamente. Outra opção é alocar ja com um
+            valor estabelecido, para não ser obrigatória uma entrada de valor ao chamar a
+            class.
+                Após instanciada é possível aplicar atributos e métodos ao objeto usando
+            o ponto: *objeto*.*comportamento* ou *objeto*.*atributo* para usar com mais
+            facilidade as informações de cada ponto da class.
 
+        Construtores
 
+                É possível criar um construtor privado para restringir o acesso a ele.
 
+            fun *nomeFun* private constructor()
 
+                this é o comando responsável por identificar o objeto ao referenciar um
+            construtor.
+                A maior utilidade de um construtor extra é criar um parâmetro para uma
+            função ou classe que pode ou não ser chamada com a mesma, porem as variáveis
+            lançadas pelo construtor não podem ser acessadas fora da classe.
+                Para isso é necessário criar uma var com mesmo nome e tipo que precisa de
+            um valor default ou null e alocar um no outro com o comando this:
 
+                this.*var* = *var*
 
-open class pessoa (var nome: String) {                      //Ex classes/Ex open class
+                Outra questão do construtor é que nele gera-se um novo bloco de execução
+            que só roda quando suas variáveis são chamadas.
+
+        Init
+
+                Init é um bloco de comando executado ao instanciar uma classe.
+                Ao iniciar a classe, todos os init serão executados e na ordem.
+
+                init {
+                }
+
+*/
+
+open class Pessoa (var nome: String) {                      //Ex classes/Ex open class
 
     var idade: Int? = null
 
@@ -257,7 +330,7 @@ fun importDataClass(){
 
 
 
-class openClass(nome: String, val Din: Float) : pessoa(nome){
+class openClass(nome: String, val Din: Float) : Pessoa(nome){
     fun saldo(){
     println("Ola $nome, voce possui $Din de saldo")
     }
@@ -283,9 +356,9 @@ class openClass(nome: String, val Din: Float) : pessoa(nome){
 
 
 fun main(){
-    val Pessoa:pessoa = pessoa("joao",26)
-    println(Pessoa.saudacao())
-    println(Pessoa.Sexo)
+    val pessoa:Pessoa = Pessoa("joao",26)
+    println(pessoa.saudacao())
+    println(pessoa.Sexo)
     println()
 
 
@@ -333,7 +406,6 @@ fun main(){
 
 
 
-
     val OC: openClass = openClass("joao", 15.52f)
     with(OC) {
         println("${OC.saudacao()}")
@@ -342,17 +414,13 @@ fun main(){
     }
     println()
 
-    val overloado: openClass = openClass("joao", 15.52f)
-    with(overloado){
+    val overload: openClass = openClass("joao", 15.52f)
+    with(overload){
         saldo(1)
         saldo(true)
         saldo("string")
         saldo(4,"int e string")
     }
-
-
-
-
 
 }
 
