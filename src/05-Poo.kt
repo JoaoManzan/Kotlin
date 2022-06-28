@@ -6,6 +6,8 @@
                 A POO sistematiza as estruturas de códigos em pacotes, pelo uso
             de funções e classes, permitindo um maior reaproveitamento de códigos
             e uma execução não linear.
+                Ela apresenta 4 pilares: encapsulamento, abstração, herança e
+            polimorfismo.
 
 
         Classes
@@ -22,6 +24,17 @@
                 }fun *nomeFunção2* (){
                         *Método2*
                 }"..."}
+
+                Além disso, as classes possuem métodos próprios que sempre podem ser
+            usados com 3 comandos: o .toString, que gera um código respectivo a variável;
+            o .hashCode que gera um código especifico para a classe de acordo com seus
+            valores;
+                O método .equals é o responsável por comparar variáveis como posições
+            na memória.
+                Já o comando .hashcode é responsável por alocar um código de
+            identificação a uma variável.
+                Porém, nenhum deles é muito útil assim, então deixa-se para a data class
+            usa-los com suas modificações próprias.
 
 
         Construtores
@@ -126,19 +139,21 @@
                 Data class é um tipo e classe usado para agrupar e transitar dados,
             é possível codar dentro dela, porém a convenção é de ser uma linha
             simples apenas para agrupamento de dados.
-                Além disso, o data class converte os dados dentro dela via override
-            com 3 comandos: o .toString, que converte o print da variável; o .hashCode
-            que gera um código especifico para a classe de acordo com seus valores;
-            e o .equals que permite comparar duas classes.
-                O comando implícito .equals é o responsável por, ao usar a data class,
-            fazer com que os dados dentro dela sejam lidos como valores e não como
-            posições na memória.
-                Já o comando .hashcode é responsável por alocar um código de
-            identificação a uma variável. Dentro de uma data class qualquer variável
-            atribuída com um valor da data class passa a ter o mesmo hashcode se
-            possuir o mesmo valor e orbitar em um hashcode próximo com valores diferentes.
-                Além desses ela também possui um comando implícito de .copy, que permite
-            copiar todos os valores de uma variável para outra.
+                Diferente de uma classe normal é necessário declarar cada varíavel dos
+            parâmetros como var ou val.
+                Além disso, o método .equals tem uma execução diferente permitindo
+            comparar o valor da variável ao invés de comparar espaços na memória.
+                Já o comando .toString permite imprimir a classe com seus parâmetros em
+            string.
+                Dentro de uma data class qualquer variável atribuída com um valor da
+            data class passa a ter o mesmo hashcode se possuir o mesmo valor e orbitar
+            em um hashcode próximo com valores diferentes.
+                Ela também possui um comando implícito de .copy, que permite copiar e
+            instanciar todos os valores de uma variável para outra, além, de poder altera-los
+             na cópia.
+                Então ela é muito útil para declarar as variáveis e ter todos esses métodos
+            extras, puxando apenas uma variável do tipo *nomeDataClass*.
+
 
             data class *nomeClasse* (var *nomeVar*: *tipoVar*,var *nomeVar1*: *tip[...]){
             }
@@ -178,21 +193,20 @@
         Override e Overload
 
                 Do mesmo jeito que com a herança uma class pode herdar os atributos de
-            outra, desde que seja uma open class, pode-se usar o comando override para
-            mudar a execução de uma função ja existente.
+            outra, desde que seja um open class ou open fun, pode-se usar o comando
+            override para mudar a execução de um método ja existente.
                 Para executar o código dentro do override é preciso do código
-            super.*nomeFunção* para ter uma saida.
+            super.*nomeOpenFunção* para ter uma saida.
 
 
-               open class *nomeOC* (var *nomeVarOC*: *tipoVarOC*,"..." ) {
-                fun *nomeFunção* (){
+                open class *nomeOC* (var *nomeVarOC*: *tipoVarOC*,"..." ) {
+                    open fun *nomeFunção* (){
                      *Método*
                      }
     class *nomeC* (*nomeVarOC*: *tipoVarOC* var *nomeVar*: *tipoVar*):*nomeOC*(*nomeVarOC*){
-                override fun *nomeFunção* (){
+                override fun *nomeOpenFunção* (){
                     *Método*
-                    super.*nomeFunção()}
-
+                    super.*nomeOpenFunção()}
 
 
                 Ja overload é uma nomenclatura a qual é atribuída para classes com
@@ -212,20 +226,33 @@
                     fun *nomeFunção* (*nomeVar*: *tipoVar3*, *nomeVar2*: *tipoVar4*){
                         *Método*}
 
-    Modificadores de visibilidade
 
-            Private e Public
+        Modificadores de visibilidade
 
-                Private é um comando atribuído a uma função de modo a restringir
-            o uso de seus métodos ao arquivo dela. Não confundir com open class.
+            Private
 
-            private class *nomeClasse* (var *nomeVar*: *tipoVar*, var *nomeVar2*"..." ){
-                    fun *nomeFunção* (){
+                Private é um comando atribuído a uma variável, função ou class de modo
+             a restringir seus usos. Uma variável ou função private serão restringidos a
+             class a qual pertencem. Já uma class tem seu uso restringido ao file e não
+             pode mais ser herdada.
+
+            private class *nomeClasse* (private var *nomeVar*: *tipoVar*,"..." ){
+                    private fun *nomeFunção* (){
                         *Método*}
+
+
+            Protected
+
+                O Protected é parecido com o Private, porém menos restritivo. Quando usado
+            em uma variável ou função, elas ainda são acessíveis a classes que herdam a
+            original.
+
+            Public
 
                 Já Public seria um comando atribuído a uma função de modo a ampliar
             as permissões dela, porém no kotlin ele ja é implícito no código,
             então não precisa ser escrito.
+
 
  *//*
     Att 2022
@@ -249,6 +276,7 @@
             o ponto: *objeto*.*comportamento* ou *objeto*.*atributo* para usar com mais
             facilidade as informações de cada ponto da class.
 
+
         Construtores
 
                 É possível criar um construtor privado para restringir o acesso a ele.
@@ -268,6 +296,7 @@
                 Outra questão do construtor é que nele gera-se um novo bloco de execução
             que só roda quando suas variáveis são chamadas.
 
+
         Init
 
                 Init é um bloco de comando executado ao instanciar uma classe.
@@ -275,6 +304,28 @@
 
                 init {
                 }
+
+
+        Late init
+
+                O lateinit é uma palavra reservada às variáveis para designar uma
+            inicialização tardia no código. Devido a isso ele é sempre uma var.
+                Esse cenário pode ser útil para casos com variáveis nulas para não
+            necessitar do tratamento do nulo até a inicialização da mesma.
+                Além disso, a variável passa a só ser alocada na memória ao ser
+            inicializada.
+                Porém, ela precisa ser inicializada para o código não quebrar. Para isso
+            o kotlin tem um if próprio de validação do lateinit:
+
+                lateinit var *nomeVar* : *tipo*
+                if(!this::*nomeVar*.isInitialized){
+                }
+
+
+        Object e companion object
+
+
+
 
 */
 
