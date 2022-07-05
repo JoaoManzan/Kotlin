@@ -1,3 +1,5 @@
+import java.util.*
+
 //05
 /*
 
@@ -268,9 +270,9 @@
                     val *nomeClass*: *nomeClass* = *nomeClass*(*parâmetros*)
                            l: objeto     l: tipo      l: instancia
 
-                Ao criar parâmetros para uma class é necessário designa-los como val ou var
-            para poder puxar os parâmetros corretamente. Outra opção é alocar ja com um
-            valor estabelecido, para não ser obrigatória uma entrada de valor ao chamar a
+                Ao criar parâmetros para uma class é necessário designa-los como val ou
+            var para poder puxar os parâmetros corretamente. Outra opção é alocar ja com
+            um valor estabelecido, para não ser obrigatória uma entrada de valor ao chamar a
             class.
                 Após instanciada é possível aplicar atributos e métodos ao objeto usando
             o ponto: *objeto*.*comportamento* ou *objeto*.*atributo* para usar com mais
@@ -281,7 +283,8 @@
 
                 É possível criar um construtor privado para restringir o acesso a ele.
 
-            fun *nomeFun* private constructor()
+            fun *nomeFun* private constructor(...): this(...){
+            }
 
                 this é o comando responsável por identificar o objeto ao referenciar um
             construtor.
@@ -324,104 +327,220 @@
 
         Object e companion object
 
+                Static é um modelo de variável do java que faz com que a variável seja
+            vista como um espelhamento na classe, enquanto sem, ela é um objeto próprio.
+            Em Kotlin a palavra reservada é const.
+                Companion object é um bloco de comando onde se colocam variáveis e funções
+            estáticas, assim como uma data class. Só pode haver um companion object por
+            class e pode ou não ter nome. Porém, ele, assim como o object, não podem ser
+            usados como métodos ao instanciar a classe me objeto.
+                Object um bloco de comando estático onde se colocam funções mais
+            abrangentes de código. Ele precisa de um nome declarado e pode-se ter quantos
+            objects forem necessários na classe. Para puxar um método ou atributo é
+            necessário declarar o nome do objeto: *classNome*.*objNome*.*método*
 
 
+        Abstract Class
+
+                A Classe abstrata é permite criar função sem a implementar(Sem criar um
+            corpo para ela), funcionando como uma data class, porém mais voltada para a
+            herança.
+                Entretanto, toda a classe que a herdar precisará implementar suas funções
+            abstratas com o comando override. Além disso, ela não pode ser instanciada,
+            por ter funções não implementadas.
+                Por último ala pode ou não ter funções implementadas normalmente nela.
+
+                abstract class *nomeAClass* (*var* : *tipoVar*) {
+                    abstract fun *nomeAFun*(){
+                }}
+                class *nome* (*var* : *tipoVar*) : *nomeAClass*(*var*){
+                    override fun *nomeAFun*(){
+                }}
+
+
+        Interface
+
+                A interface é muito similar à classe abstrata, mas uma classe pode ter
+            várias interfaces implementadas("herdadas").
+                Ela também pode ou não ter funções implementadas, porém não é o usual a
+            ser usado. Além disso, suas variáveis não podem ser inicializadas com valor.
+
+                interface *nomeInterface* {
+                    fun *nomeIFun*(){
+                }}
+                class *nome* (*var* : *tipoVar*) : *nomeInterface1*,*nomeInterface2*(...){
+                    override fun *nomeIFun*(){
+                }}
 
 */
 
-open class Pessoa (var nome: String) {                      //Ex classes/Ex open class
+open class Pessoa(var nome: String) {                      //Ex classes/Ex open class
 
     var idade: Int? = null
 
-    constructor(nome: String, idade: Int) : this(nome){
+    constructor(nome: String, idade: Int) : this(nome) {
         this.idade = idade
     }
 
-    open fun saudacao (){
+    open fun saudacao() {
         println("Olá, $nome de $idade anos")
     }
 
     var Sexo: String = ""
-    get() {
-        println("Getter usado")
-        return field
-    }
-    set(value) {
-        field = value
-    }
+        get() {
+            println("Getter usado")
+            return field
+        }
+        set(value) {
+            field = value
+        }
 
 }
 
 
-
-enum class Prioridades(var id: Int){
+enum class Prioridades(var id: Int) {
     BAIXA(1) {
-        override fun toString():String{
-            return "Super Baixa"}
-    }
-    , MEDIA(5), ALTA(10)
+        override fun toString(): String {
+            return "Super Baixa"
+        }
+    },
+    MEDIA(5), ALTA(10)
 }
-
 
 
 class quadrado(val area: Float)
 
 data class triangulo(val area: Float)
 
-data class testeDataClass(var B: Boolean, var S: String, var I: Int){
-    fun functionInsideClass(){
+data class testeDataClass(var B: Boolean, var S: String, var I: Int) {
+    fun functionInsideClass() {
         println("função usada")
     }
 }
 
-fun importDataClass(){
-        testeDataClass(true, "", 10).functionInsideClass()
+fun importDataClass() {
+    testeDataClass(true, "", 10).functionInsideClass()
 
 }
 
 
-
-class openClass(nome: String, val Din: Float) : Pessoa(nome){
-    fun saldo(){
-    println("Ola $nome, voce possui $Din de saldo")
+class openClass(nome: String, val Din: Float) : Pessoa(nome) {
+    fun saldo() {
+        println("Ola $nome, voce possui $Din de saldo")
     }
 
     override fun saudacao() {
         println("xau")
         super.saudacao()
     }
-    fun saldo(i:Int){
-        println("override 1 $i")
+
+    fun saldo(i: Int) {
+        println("overload 1 $i")
     }
-    fun saldo(i:Boolean){
-        println("override 2 $i")
+
+    fun saldo(i: Boolean) {
+        println("overload 2 $i")
     }
-    fun saldo(i:String){
-        println("override 3 $i")
+
+    fun saldo(i: String) {
+        println("overload 3 $i")
     }
-    fun saldo(i:Int, j:String){
-        println("override 4 $i $j")
+
+    fun saldo(i: Int, j: String) {
+        println("overload 4 $i $j")
     }
 }
 
+open class Mamifero(especie: String) {
+    lateinit var fala: String
 
+    init {
+        fala = when (especie) {
+            "cachorro" -> {
+                "au"
+            }
+            "gato" -> {
+                "miau"
+            }
+            else -> {
+                "???"
+            }
+        }
+    }
 
-fun main(){
-    val pessoa:Pessoa = Pessoa("joao",26)
+    private var movimento: String? = null
+
+    constructor(especie: String, movimento: String) : this(especie) {
+
+        this.movimento = movimento
+        if (especie == "baleia") {
+            this.movimento = "nadar"
+        } else {
+            this.movimento = "andar"
+        }
+        return
+    }
+
+    fun movimentacao() {
+        if (movimento != null) println(movimento)
+    }
+
+    companion object {
+        const val patasMax = 4
+        const val patasMin = 2
+    }
+
+    object Objeto {
+        fun ornitorrinco(especie: String) {
+            val reproducao = "ovo"
+            if (especie == "ornitorrinco") {
+                println("${especie.capitalize()}, o único que bota $reproducao.")
+            }
+        }
+    }
+
+}
+
+abstract class Cachorro(especie: String) : Mamifero(especie){
+    abstract fun latir (boolean: Boolean)
+}
+
+class HerdaCachorro (especie: String ) : Cachorro(especie){
+    override fun latir(boolean: Boolean) {
+        if (boolean)println("au")
+    }
+}
+
+interface Gato {
+    var variavel:String
+    fun miar(boolean: Boolean)
+}
+
+class HerdaGato () : Gato {
+    override fun miar(boolean: Boolean) {
+        if (boolean)println("miau")
+    }
+
+    override var variavel: String
+        get() = ""
+        set(value) {}
+}
+
+fun main() {
+    val pessoa: Pessoa = Pessoa("joao", 26)
     println(pessoa.saudacao())
     println(pessoa.Sexo)
     println()
 
 
 
-    for (p in Prioridades.values()){
-        if (p.toString() == "Super Baixa"){
-        println("BAIXA")
-    }
+    for (p in Prioridades.values()) {
+        if (p.toString() == "Super Baixa") {
+            println("BAIXA")
+        }
         println("$p - ${p.id} - ${p.ordinal}")
     }
     println()
-
 
 
     val q1 = quadrado(10f)
@@ -447,14 +566,13 @@ fun main(){
 
 
 
-    with(t1){
+    with(t1) {
         println(t1.hashCode())
-        println(t1==t2)
+        println(t1 == t2)
         println(t1)
         println()
 
     }
-
 
 
     val OC: openClass = openClass("joao", 15.52f)
@@ -466,12 +584,26 @@ fun main(){
     println()
 
     val overload: openClass = openClass("joao", 15.52f)
-    with(overload){
+    with(overload) {
         saldo(1)
         saldo(true)
         saldo("string")
-        saldo(4,"int e string")
+        saldo(4, "int e string")
     }
+
+    val cao = Mamifero("cachorro", "")
+    cao.movimentacao()
+    println(cao.fala)
+    val baleia = Mamifero("baleia", "")
+    baleia.movimentacao()
+    println(baleia.fala)
+    val gato = Mamifero("gato")
+    gato.movimentacao()
+    println(gato.fala)
+    println("Mamiferos tem de ${Mamifero.patasMin} a ${Mamifero.patasMax} patas")
+    val ornitorrinco = Mamifero.Objeto.ornitorrinco("ornitorrinco")
+    HerdaCachorro(especie = "cachorro").latir(true)
+    HerdaGato().miar(true)
 
 }
 
