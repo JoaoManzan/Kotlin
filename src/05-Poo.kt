@@ -1,5 +1,3 @@
-import java.util.*
-
 //05
 /*
 
@@ -372,6 +370,23 @@ import java.util.*
                     override fun *nomeIFun*(){
                 }}
 
+
+        Polimorfismo
+
+            Polimorfismo é uma característica do java que se estende ao kotlin e que
+        trata sobre herança. Ele permite que classes que herdam outras possam chamar seus
+        métodos da mesma forma, com execuções diferentes.
+
+        Classe anônima
+
+            A classe anônima é a possibilidade de criar uma classe ao executar uma chamada ou
+        instancia de outra classe, que será criada apenas na execução dele e passa a não
+        existir. Além disso, ela define uma prioridade de que os comandos dela só serão
+        executados no fim dos comandos da classe inicial.
+
+
+
+
 */
 
 open class Pessoa(var nome: String) {                      //Ex classes/Ex open class
@@ -408,23 +423,23 @@ enum class Prioridades(var id: Int) {
 }
 
 
-class quadrado(val area: Float)
+class Quadrado(val area: Float)
 
-data class triangulo(val area: Float)
+data class Triangulo(val area: Float)
 
-data class testeDataClass(var B: Boolean, var S: String, var I: Int) {
+data class TesteDataClass(var B: Boolean, var S: String, var I: Int) {
     fun functionInsideClass() {
         println("função usada")
     }
 }
 
 fun importDataClass() {
-    testeDataClass(true, "", 10).functionInsideClass()
+    TesteDataClass(true, "", 10).functionInsideClass()
 
 }
 
 
-class openClass(nome: String, val Din: Float) : Pessoa(nome) {
+class OpenClass(nome: String, val Din: Float) : Pessoa(nome) {
     fun saldo() {
         println("Ola $nome, voce possui $Din de saldo")
     }
@@ -456,10 +471,10 @@ open class Mamifero(especie: String) {
 
     init {
         fala = when (especie) {
-            "cachorro" -> {
+            "Cachorro" -> {
                 "au"
             }
-            "gato" -> {
+            "Gato" -> {
                 "miau"
             }
             else -> {
@@ -501,30 +516,54 @@ open class Mamifero(especie: String) {
 
 }
 
-abstract class Cachorro(especie: String) : Mamifero(especie){
-    abstract fun latir (boolean: Boolean)
+abstract class Cachorro(especie: String) : Mamifero(especie) {
+    abstract fun latir(boolean: Boolean)
 }
 
-class HerdaCachorro (especie: String ) : Cachorro(especie){
+class HerdaCachorro(especie: String) : Cachorro(especie) {
     override fun latir(boolean: Boolean) {
-        if (boolean)println("au")
+        if (boolean) println("au au")
     }
 }
 
 interface Gato {
-    var variavel:String
-    fun miar(boolean: Boolean)
+    var miar: String
+    fun pelo(boolean: Boolean)
 }
 
-class HerdaGato () : Gato {
-    override fun miar(boolean: Boolean) {
-        if (boolean)println("miau")
+class GatoPersa : Gato {
+    override fun pelo(boolean: Boolean) {
+        if (boolean) println("muito")
     }
 
-    override var variavel: String
-        get() = ""
-        set(value) {}
+    override var miar: String = ""
+        get() = "miau"
+        set(value) {
+            field = ""
+        }
 }
+
+
+class GatoSphinx(override var miar: String = "miau") : Gato {
+    override fun pelo(boolean: Boolean) {
+        if (boolean) println("Nenhum")
+    }
+
+
+}
+
+class Muito {
+    fun Feio(m: Gato) {
+        println("feio que da dó")
+        println(m.miar)
+
+    }
+}
+
+fun gatos(g: Gato) {
+    g.pelo(true)
+}
+
 
 fun main() {
     val pessoa: Pessoa = Pessoa("joao", 26)
@@ -543,10 +582,10 @@ fun main() {
     println()
 
 
-    val q1 = quadrado(10f)
-    val q2 = quadrado(10f)
-    val t1 = triangulo(10f)
-    val t2 = triangulo(10f)
+    val q1 = Quadrado(10f)
+    val q2 = Quadrado(10f)
+    val t1 = Triangulo(10f)
+    val t2 = Triangulo(10f)
     println(t1)
     println(t2)
     println(q1)
@@ -575,7 +614,7 @@ fun main() {
     }
 
 
-    val OC: openClass = openClass("joao", 15.52f)
+    val OC: OpenClass = OpenClass("joao", 15.52f)
     with(OC) {
         println("${OC.saudacao()}")
         Sexo
@@ -583,7 +622,7 @@ fun main() {
     }
     println()
 
-    val overload: openClass = openClass("joao", 15.52f)
+    val overload: OpenClass = OpenClass("joao", 15.52f)
     with(overload) {
         saldo(1)
         saldo(true)
@@ -591,20 +630,32 @@ fun main() {
         saldo(4, "int e string")
     }
 
-    val cao = Mamifero("cachorro", "")
+    val cao = Mamifero("Cachorro", "")
     cao.movimentacao()
     println(cao.fala)
     val baleia = Mamifero("baleia", "")
     baleia.movimentacao()
     println(baleia.fala)
-    val gato = Mamifero("gato")
+    val gato = Mamifero("Gato")
     gato.movimentacao()
     println(gato.fala)
     println("Mamiferos tem de ${Mamifero.patasMin} a ${Mamifero.patasMax} patas")
-    val ornitorrinco = Mamifero.Objeto.ornitorrinco("ornitorrinco")
-    HerdaCachorro(especie = "cachorro").latir(true)
-    HerdaGato().miar(true)
+    Mamifero.Objeto.ornitorrinco("ornitorrinco")
+    HerdaCachorro(especie = "Cachorro").latir(true)
+    println(GatoPersa().miar)
+    GatoPersa().pelo(true)
+    gatos(GatoSphinx())
+    gatos(GatoPersa())
 
+    val p = Muito()
+    p.Feio(object : Gato {
+        override var miar: String = "miau."
+
+        override fun pelo(boolean: Boolean) {
+        }
+    })
+    println(GatoSphinx().miar)
+    
 }
 
 
