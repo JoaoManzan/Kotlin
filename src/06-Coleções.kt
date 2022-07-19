@@ -4,11 +4,18 @@
         Introdução
 
             Coleções são tipos de agrupamentos de informações distribuídas em várias
-        categorias. Elas são geralmente alocadas em variáveis para poderem ser usadas e
-        são também o tipo a ser declarado na mesma, seguido ou não de um tipo "comum":
+        categorias.
+            Elas podem receber valores simples, como Int ou String, ou receber valores como
+        uma classe instanciada com vários parâmetros.
+            Elas são geralmente alocadas em variáveis ou funções para poderem ser usadas e
+       são também o tipo a ser declarado na mesma, seguido ou não de um tipo "comum":
 
-            val *lista*: List<Int> = listOf((...))
+            val *Coleção*: List<*Tipo*> = listOf((...))
 
+            fun *Coleção*(): Set<*Tipo*> {
+                return setOf(
+                (...)
+            )}
 
         List
 
@@ -41,9 +48,10 @@
         Set
 
             SetOf(...) é um tipo de coleção que se assemelha ao list, porém ao designar um
-        elemento repetido, ele será mostrado apenas uma vez. Ele também é não ordenado então
-       todos os comandos de list. são aplicáveis ao set., porém ele não aceita comandos como
-       o index ou o removeAt por isso.
+       elemento repetido, ele será mostrado apenas uma vez. Ele também é não ordenado então
+       todos os comandos de listOf(...) são aplicáveis ao setOf(...), porém ele não aceita
+       comandos como o index ou o removeAt por isso.
+
 
 
         Map
@@ -71,10 +79,84 @@
             *valMap*.[*chave*]                       -Acessa o valor referente a chave
             *valMap*.clear()                         -Zera a lista.
 
+        Comandos
+
+            As coleções possuem um conjunto de comandos próprios, eles podem ser apenas
+        executáveis ou com predicado: {it.*varColeção*} (um filtro para determinar o escopo
+        do comando):
+
+            .Any()/{it.*varColeção*}        — Verifica se existem elementos (Boolean).
+            .Count()/{it.*varCol*}          — Conta os elementos (Int).
+            .first()                        — Retorna o primeiro elemento.
+            .last()                         — Retorna o último elemento.
+            .firstOrNull()                  — Retorna o primeiro elemento ou nulo.
+            .lastOrNull()                   — Retorna o último elemento ou nulo.
+            .sum()                          — Soma os elementos (Int).
+            .sumOf{it.*varCol*}             — Soma os elementos estabelecidos.
+            .filter{it.*varCol*(...)}       — Retorna o predicado (Boolean).
+            .take()                         — Puxa os X primeiros elementos.
+            .takeLast()                     — Puxa os X últimos elementos.
+            .forEach{it.*varCol*(...)}      — Passa cada item e retorna o predicado.
+
+            .max()/{it}                     — Retorna o elemento mais alto (Int).
+            .min()/{it}                     — Retorna o elemento mais baixo. (Int).
+            .maxOrNull()/{it.*varCol*}      — Retorna o elemento mais alto ou nulo (Int).
+            .minOrNull()/{it.*varCol*}      — Retorna o elemento mais baixo ou nulo (Int).
+            .maxOf()/{it}/{it.*varCol*}     — Retorna o elemento mais alto (Int).
+            .minOf()/{it}/{it.*varCol*}     — Retorna o elemento mais baixo (Int).
+            .maxByOrNull{it.*varCol*}       — Retorna o objeto mais alto ou nulo (Any).
+            .minByOrNull{it.*varCol*}       — Retorna o objeto mais baixo ou nulo (Any).
+
+            .map{it.*varCol*}               — Cria uma lista com os predicados.
+            .average()                      — Faz uma média do elementos (Int).
+            .distinct()                     — Elimina elementos repetidos.
+            .distinctBy{it}                 — Elimina elementos repetidos no predicado.
+            .sorted()                       — Ordena uma lista (Int).
+            .sortedDescending()             — Ordena uma lista do maior para o menor (Int).
+            .reversed()                     — Inverte uma lista.
+
+            Alguns dos comandos podem ser usados em cascata como o .filter{it.*varCol*}.any.()
+        para retornar um boolean na pesquisa do filter.
+            O comando it.*varColeção* se refere a um objeto na lista, seja uma classe,
+        função ou variável dentro de uma coleção.
+            O comando .map{it.} além de poder receber dados de mais de uma lista existente,
+        pode também receber uma lista nova criada nela.
+
 
 */
 
+private fun listaDeDados(): List<Receita> {
+    return listOf(
+        Receita(
+            "Lasanha", 1200,
+            listOf(
+                Ingrediente("Presunto", 5),
+                Ingrediente("Queijo", 10),
+                Ingrediente("Molho de tomate", 2),
+                Ingrediente("Manjericão", 3)
+            )
+        ),
+        Receita("Panqueca", 500),
+        Receita("Omelete", 200),
+        Receita("Parmegiana", 700),
+        Receita("Sopa de feijão", 300),
+        Receita(
+            "Hamburguer", 2000,
+            listOf(
+                Ingrediente("Pão", 1),
+                Ingrediente("Hamburguer", 3),
+                Ingrediente("Queijo", 1),
+                Ingrediente("Catupiry", 1),
+                Ingrediente("Bacon", 3),
+                Ingrediente("Alface", 1),
+                Ingrediente("Tomate", 1)
+            )
+        )
+    )
+}
 
+data class Receita(val nome: String, val calorias: Int, val ingredientes: List<Ingrediente> = listOf())
+data class Ingrediente(val nome: String, val quantidade: Int)
 
 fun main() {
 
@@ -121,7 +203,74 @@ fun main() {
     println(mapMutavel["França"])
     mapMutavel.clear()
     println("$mapMutavel.clear")
+    println()
 
+
+    val data = listaDeDados()
+    val dataNull = listOf<Any>()
+
+    println("Tenho receitas? ${if (data.any()) "sim" else "não"}.")
+    println("Tenho ${data.count()} receitas.")
+    println("Tenho receitas de Lasanha? ${if (data.any { it.nome == "Lasanha" }) "sim" else "não"}.")
+    println("Tenho ${data.count { it.nome == "Lasanha" }} receitas de Lasanha.")
+    println()
+
+    println("A primeira receita é: ${data.first().nome}.")
+    println("A última receita é: ${data.last().nome}.")
+    println("A primeira receita é: ${dataNull.firstOrNull()}.")
+    println("A última receita é: ${dataNull.lastOrNull()}.")
+    println()
+
+    val sum = listOf(4,6)
+    println("A soma da variável é: ${sum.sum()}")
+    println("A soma de calorias é: ${data.sumOf { it.calorias }}")
+    println()
+
+    var filterNome = data.filter { it.nome == "Panqueca" }.any()
+    println("Sei fazer panqueca? ${if (filterNome) "sim" else "não"}")
+    filterNome = data.filter { it.nome == "Sushi" }.any()
+    println("Sei fazer sushi? ${if (filterNome) "sim" else "não"}")
+    println()
+
+    println("Primeiros dois:")
+    val firstTwo = data.take(2)
+    for (x in firstTwo.withIndex()) {
+        println("${x.index + 1} - ${x.value.nome}")
+    }
+    println()
+    println("Últimos dois:")
+    val lastTwo = data.takeLast(2)
+    for (x in lastTwo.withIndex()) {
+        println("${x.index + 5} - ${x.value.nome}")
+    }
+    println()
+
+    data.filter { it.calorias > 500 }.forEach { println(it.nome) }
+    println()
+
+    println("Mais calórica: ${ data.maxOf { it.calorias }}")
+    println("Menos calórica: ${ data.minOf { it.calorias }}")
+    var cal = data.maxByOrNull { it.calorias }
+    println("Mais calórica: ${cal?.nome}")
+    cal = data.minByOrNull { it.calorias }
+    println("Menos calórica: ${cal?.nome}")
+    println()
+
+    println(data.map { it.calorias })
+    val media = data.map { it.calorias }.average()
+    println("A média de calorias é: $media.")
+    println()
+
+    val listaInteiros = listOf(1, 2, 6, 67, 7, 3, 34, 56, 3, 3, 2, 5, 34, 2)
+    println("Lista : $listaInteiros")
+    println("Lista distinta: ${listaInteiros.distinct()}.")
+    println("Lista distinta by: ${listaInteiros.distinctBy{it}}.")
+    println("Lista ordenada: ${listaInteiros.sorted()}")
+    println("Lista ordenada decrescente: ${listaInteiros.sortedDescending()}")
+    println("Lista revertida: ${listaInteiros.reversed()}")
+    println("Máximo da lista: ${listaInteiros.max()}")
+    println("Máximo da lista: ${listaInteiros.minOrNull()}")
+    println()
 
 
 }
