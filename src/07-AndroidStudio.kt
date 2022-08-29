@@ -94,7 +94,7 @@
                 Themes
                     Subpasta onde ficam temas diferentes como claro ou noturno.
 
-            xml
+            Xml
                 É uma pasta nova.
 
 
