@@ -6,7 +6,8 @@
         Essa estrutura liga todos os objetos à tela de código.
 
         View
-            São elementos de interface interativos, ou objetos.
+            São elementos de interface interativos ou objetos.
+            Também é um tipo de dado referente a qualquer elemento da tela.
 
         View group
             É um agrupador de elementos que define a posição e comportamentos
@@ -233,6 +234,7 @@
 
 
             Button
+
                 É o elemento de botão, ele aceita todos os comandos do textView
             e pode ser clicado pelo usuário.
 
@@ -243,6 +245,7 @@
 
 
             ImageView
+
                 É o elemento usado para adicionar imagens da pasta drawable ao layout
 
                     <ImageView
@@ -261,4 +264,82 @@
 
                     app:tint="@color/*cor*"
 
+            ID
+                É o comando que designa um nome para cada elemento na tela que
+            possa ter interação com o código e o usuário.
+
+                android:id="@+id/*type_name*"
+
+            View Binding
+
+                É o conector entre a parte interativa do layout e a activity, para
+            tal é necessário habilitar o view binding no arquivo gradle:
+            gradle scripts > build.gradle (module) > object android {}:
+
+                buildFeatures {
+                    viewBinding true
+                }
+
+                Além disso, cada activity terá sua própria linha de código
+            vinculando-o a um arquivo de layout, que pode ser alterado para incluir
+            as funcionalidades do view binding:
+
+                Padrão:
+                override fun onCreate(savedInstanceState: Bundle?) {
+                    super.onCreate(savedInstanceState)
+                    setContentView(R.layout.activity_main)
+                }
+
+                Alterada:
+                private lateinit var binding: ActivityMainBinding
+
+                override fun onCreate(savedInstanceState: Bundle?) {
+                    super.onCreate(savedInstanceState)
+                    binding = ActivityMainBinding.inflate(layoutInflater)
+                    setContentView(binding.root)
+                }
+
+                Nessa alteração, cria-se uma lateinit var, sendo instanciada após
+            a criação da activity pela fun onCreate pelo comando .inflate e, por
+            fim, muda-se para setContentView(binding.root).
+                Note que para tudo isso é preciso importar uma biblioteca própria
+            para ter acesso ao ActivityMainBinding:
+
+                import com.example.myapplication.databinding.ActivityMainBinding
+
+            Evento de click
+
+                 Para implementar um evento de clique usa-se:
+
+                onClickListener
+
+                    É uma interface do tipo view que pode ser implementada para
+                dar acesso ao comando onClickListener ou pode ser instanciada em
+                uma classe anônima na própria chamada.
+
+                class MainActivity : AppCompatActivity(), View.OnClickListener {
+
+                    private lateinit var binding: ActivityMainBinding
+
+                override fun onCreate(savedInstanceState: Bundle?) {
+                    super.onCreate(savedInstanceState)
+                    binding = ActivityMainBinding.inflate(layoutInflater)
+                    setContentView(binding.root)
+                    binding.buttonCalculate.setOnClickListener(this)
+                }
+
+                    override fun onClick(view: View) {
+                        if (view.id == R.id.*buttonId*){
+                            (...)
+                        }
+                }
+
+            Toast
+
+                Em um botão é possível gerar uma notificação de clique com o
+            comando toast:
+
+        Toast.makeText(context: this, text: "*texto*", Toast.LENGTH_SHORT).show()
+
+                O comando .show() mostra o toast.
 */
