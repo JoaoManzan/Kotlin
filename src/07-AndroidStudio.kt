@@ -103,4 +103,65 @@
             e outro onde encontra-se a versão Android mínima e a mais atual, como
             compilador, além de uma seção contendo todos os pacotes implementados
             pela versão Android escolhida, podendo ali adicionar pacotes extras.
+
+
+            Convenções de código
+
+                Para escrever nomes, usa-se a seguinte padronização:
+
+                camelCase:
+                (Primeira palavra minúscula, as seguintes maiúsculas, sem
+                espaços)
+                    Variáveis
+                    Métodos
+                    Atributos de classe
+                    Parâmetros
+                    Funções
+
+                PascalCase:
+                (Todas as palavras maiúsculas, sem espaços)
+                    Classes
+
+                snake_case:
+                (Todas as palavras minúsculas, com o under line ao invés de espaços)
+
+                    Variáveis de xml(textos, Id, (...))
+
+                SCREAMING_SNAKE_CASE:
+                (Todas as letras maiúsculas, com o under line ao invés de espaços)
+                    Constantes
+
+                Kebab-case:
+                (Todas as palavras minúsculas, com o traço ao invés de espaços)
+
+
+                Além disso, usa-se a palavra reservada const, para declarar valores
+            constantes, junto dos imports.
+
+            Ordenação na classe:
+
+                Variáveis de escopo da classe
+                inicializações
+                Construtores secundários
+                Objects
+                Companion objects
+                Override
+                Overloads (agrupados entre si)
+
+
+            Ao criar uma classe em um arquivo android, respeitar a nomenclatura:
+
+            Componente      Classe               Nome do layout
+            ------------------------------------------------------------------
+            Activity        UserProfileActivity  activity_user_profile
+            Fragment        SignUpFragment       fragment_sign_up
+            Dialog          ChagePasswordDialog  dialog_change_password
+
+                Cada classe tem seu nome, seguido do tipo do arquivo e o inverso
+            para o xml.
+                Além disso, cada elemento do xml leva seu tipo como prefixo de seu
+            nome em snake_case.
+
+
+
 */

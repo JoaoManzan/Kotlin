@@ -69,7 +69,7 @@
             Por último os elementos diferenciam maiúscula e minúscula:
 
                 <Button /> != <button />
-
+*//*
         Linear Layout
 
             É um tipo de viewGroup que agrupa os elementos vertical ou
@@ -216,7 +216,7 @@
 
                 Esse elemento também possui seus próprios comandos:
 
-                Input type
+                Input type:
                     Define o tipo de variável que o campo recebe e atribui como o
                 usuário vai interagir com o campo:
 
@@ -226,7 +226,7 @@
                 ja um textMultiLine, permite o usuário escrever textos e separar as
                 linhas com o Enter.
 
-                Hint
+                Hint:
                     Mostra um texto fantasma, que sumirá com qualquer entrada,
                 usado para avisar o usuário o que deve ser escrito no campo.
 
@@ -251,7 +251,7 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/*Imagem*"
+                        android:src="@drawable/ *Imagem*"
                     />
 
                 É possível adicionar mais drawables à pasta, basta clicar nela com o
@@ -262,13 +262,17 @@
                 Por fim é possível alterar a cor da imagem pós-exportação, basta
             usar o comando tint
 
-                    app:tint="@color/*cor*"
+                    app:tint="@color/ *cor*"
 
             ID
                 É o comando que designa um nome para cada elemento na tela que
             possa ter interação com o código e o usuário.
 
-                android:id="@+id/*type_name*"
+                android:id="@+id/ *type_name*"
+
+*//*
+
+        Identificação de elementos
 
             View Binding
 
@@ -334,6 +338,34 @@
                         }
                 }
 
+            Plugin
+
+                Ao criar um projeto mais antigo, a biblioteca Kotlin android
+            extensions era importada, por ela é possível identificar os elementos,
+            porém é um código deprecated(que será descontinuado), então o ideal é
+            evitar.
+
+            findViewById<*Id*>
+
+                Esse método é o mais comum e tradicional, porém, ele precisa ser
+            inteiro mapeado na mão, criando uma variável para cada parte da tela,
+            além de, em grande escala, consumir mais memória do que o view binding.
+
+                 class MainActivity : AppCompatActivity(), View.OnClickListener {
+
+                    private lateinit var viewName1: TextView
+                    private lateinit var viewName2: Button
+
+                override fun onCreate(savedInstanceState: Bundle?) {
+                    super.onCreate(savedInstanceState)
+                    setContentView(R.layout.activity_main)
+
+                }
+
+                    viewName1 = findViewById(R.id.*view_name*)
+                    viewName2 = findViewById(R.id.*view_name2*)
+                }
+
             Toast
 
                 Em um botão é possível gerar uma notificação de clique com o
@@ -342,4 +374,9 @@
         Toast.makeText(context: this, text: "*texto*", Toast.LENGTH_SHORT).show()
 
                 O comando .show() mostra o toast.
+
+
+        Relative Layout
+
+                a
 */
