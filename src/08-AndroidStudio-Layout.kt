@@ -258,7 +258,8 @@
             botão direito > New > Vector Asset > Clip Art > Selecionar o vetor
             desejado. Podendo na mesma interface alterar cor e opacidade do vetor.
                 O tamanho da imagem depende da hora de criação, porém, se for
-            usado um vetor, pode ser alterado mudando o tamanho do elemento.
+            usado um vetor, pode ser alterado mudando o tamanho do elemento, no
+            layout_width e no layout_height.
                 Por fim é possível alterar a cor da imagem pós-exportação, basta
             usar o comando tint
 
@@ -378,5 +379,26 @@
 
         Relative Layout
 
-                a
+                Relative layout é um view group, como o linear layout, que define a
+            disposição dos elementos na tela, com o intuito de evitar cascastas de
+            linear layouts.
+                Assim sendo, ele apresenta comandos próprios para tal:
+
+                layout_allign(...):
+                    Possui diversas variações e vai definir um elemento primário
+                para alinhar o elemento desejado.
+                    Pode ser true or false ou pode referenciar o id de outro objeto.
+
+                    layout_allignEnd= "@id/ *elemento_name*"
+
+                layout_center(...):
+                    Também possui diversas variações e vai alinhar um elemento com o
+                centro ou centro mais a sua especificação(vertical, horizontal)
+
+                layout_below:
+                    Permite alinhar um elemento com base em outro:
+
+                    layout_below= "@id/ *elemento_name*"
+
+
 */
