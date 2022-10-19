@@ -352,20 +352,26 @@
             inteiro mapeado na mão, criando uma variável para cada parte da tela,
             além de, em grande escala, consumir mais memória do que o view binding.
 
-                 class MainActivity : AppCompatActivity(), View.OnClickListener {
+                 class MainActivity : AppCompatActivity() {
 
-                    private lateinit var viewName1: TextView
-                    private lateinit var viewName2: Button
+                    private lateinit var *nomeView*: *tipo*
+                    private lateinit var *nomeView1*: *tipo1*
+                    (...)
 
                 override fun onCreate(savedInstanceState: Bundle?) {
                     super.onCreate(savedInstanceState)
                     setContentView(R.layout.activity_main)
 
-                }
+                    *nomeView* = findViewById<*tipoView*>(R.id.*nome_view*)
+                    *nomeView1* = findViewById(R.id.*nome_view1*)
+                    (...)
 
-                    viewName1 = findViewById(R.id.*view_name*)
-                    viewName2 = findViewById(R.id.*view_name2*)
-                }
+                    *nomeView*.setOnClickListener {
+                    *nomeView1*.setText(R.string.text_view_phraseOne)
+                    (...)
+                    }
+
+                }}
 
             Toast
 
@@ -380,16 +386,16 @@
         Relative Layout
 
                 Relative layout é um view group, como o linear layout, que define a
-            disposição dos elementos na tela, com o intuito de evitar cascastas de
+            disposição dos elementos na tela, com o intuito de evitar cascatas de
             linear layouts.
                 Assim sendo, ele apresenta comandos próprios para tal:
 
-                layout_allign(...):
+                layout_align(...):
                     Possui diversas variações e vai definir um elemento primário
                 para alinhar o elemento desejado.
                     Pode ser true or false ou pode referenciar o id de outro objeto.
 
-                    layout_allignEnd= "@id/ *elemento_name*"
+                    layout_alignEnd= "@id/ *elemento_name*"
 
                 layout_center(...):
                     Também possui diversas variações e vai alinhar um elemento com o

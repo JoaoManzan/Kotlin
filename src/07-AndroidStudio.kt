@@ -77,7 +77,7 @@
 
             Layout
                 O layout é a pasta que contem os arquivos responsáveis por cada
-            tela do aplicativo e são ligados por nome aos arquivos da pasta java
+            tela do aplicativo sendo ligados por nome aos arquivos da pasta java
 
             mipmap
                 É onde ficam os ícones da aplicação, em outro formato.
@@ -155,12 +155,46 @@
             ------------------------------------------------------------------
             Activity        UserProfileActivity  activity_user_profile
             Fragment        SignUpFragment       fragment_sign_up
-            Dialog          ChagePasswordDialog  dialog_change_password
+            Dialog          ChangePasswordDialog  dialog_change_password
 
                 Cada classe tem seu nome, seguido do tipo do arquivo e o inverso
             para o xml.
                 Além disso, cada elemento do xml leva seu tipo como prefixo de seu
             nome em snake_case.
+
+
+        Lambda
+
+            Lambda é uma simplificação das funções, ou uma função anônima, que
+        não precisa de nome, pode ou não ter parâmetros e possui um bloco de
+        execução, cujo tipo de retorno é sempre o da última linha. Ele pode ser
+        instanciado em uma val para poder ser chamado.
+
+           val *nomeVal* = {*parâmetros* -> *execução*}
+
+            O lambda também permite que ele seja puxado como o parâmetro de outra
+        função e pode ser criada na chamada de outra função.
+
+            fun *nomeFun* (*nomeVal*: (*parâmetros*) -> *tipoRetorno*)
+
+            fun main {
+                *nomeFun* {*parâmetros* ->
+                            *execução*}
+            }
+
+            Um adendo que no kotlin, é possível usar um lambda como classe anônima,
+        em uma interface de método único e simplifica a classe anônima com override por
+        um lambda, usando o SAM conversion - Single Abstract Method.
+
+        Constante
+
+            Constante, ou CONST é uma variável atribuída ao top level do arquivo, na
+        área junto aos imports, sempre com um valor imutável e inicializado. Devido a
+        isso ela poderá ser acessada por qualquer classe ou função do arquivo.
+
+            const val  *nome* = *valor*
+
+            A constante também pode ser declarada em um object ou companion object.
 
 
 
