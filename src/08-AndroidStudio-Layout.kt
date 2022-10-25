@@ -406,5 +406,55 @@
 
                     layout_below= "@id/ *elemento_name*"
 
+        Elevation
 
+            O comando elevation gera uma sombra para o elemento.
+
+            android:elevation="*tamanho*dp"
+
+       Temas
+            Na pasta values, existe uma subpasta themes, responsável por gerar a
+        barra de utilitários do android. É possível alterar a cor padrão mudando a
+        cor primária variante.
+            Além disso existe a barra com o nome do aplicativo, que pode ser
+        desativada na função onCreate usando o comando:
+
+               supportActionBar?.hide()
+
+        Tela principal
+
+            É possível criar uma nova activity:
+
+        app > java > com.exemple.*nomeProjeto* > botão direito > new > Activity >
+        Empty Activity
+
+        app > res > layout > botão direito > new > Activity > Empty Activity
+
+            Ao cria-la, é possível alterar-la para ser a tela inicial de duas
+        formas, ou marcando a box na criação da activity, que irá setar
+        automaticamente, ou alterar no android manifest.
+
+        app > manifest > AndroidManifest.xml
+
+            Nele se encontram todas as activities, e a tela inicial possui o
+        seguinte código:
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            Para altera-la basta mover o respectivo código para a nova tela inicial e
+        inverter de ambas o:
+
+            android:exported="true"
+
+            Também no manifest é possível mudar o ícone do aplicativo:
+
+            android:icon="@mipmap/*app_logo*"
+            android:label="@string/app_name"
+            android:roundIcon="@mipmap/*app_logo*"
+
+            O padrão é ser um mipmap o ícone do aplicativo.
 */
