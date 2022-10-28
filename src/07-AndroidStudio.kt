@@ -60,107 +60,108 @@
             Um novo projeto criado no Android Studio vem com algumas pastas ja
         prontas em sua criação:
 
-            Manifest
-                É a pasta com o código respectivo aos acessos do aplicativo, a
-            qual a primeira tela, número de telas e as definições como ícone,
-             nome, entre outros.
+        Manifest
+            É a pasta com o código respectivo aos acessos do aplicativo, a
+        qual a primeira tela, número de telas e as definições como ícone,
+         nome, entre outros.
 
-            Java
-                É a pasta onde fica o código a ser desenvolvido, assim como os
-            respectivos testes.
+        Java
+            É a pasta onde fica o código a ser desenvolvido, assim como os
+        respectivos testes.
 
-            Res
-                Dentro da res temos algumas subpastas:
+        Res
+            Dentro da res temos algumas subpastas:
 
-            Drawable
-                É onde ficam os recursos desenhaveis na tela.
+        Drawable
+            É onde ficam os recursos desenhaveis na tela.
 
-            Layout
-                O layout é a pasta que contem os arquivos responsáveis por cada
-            tela do aplicativo sendo ligados por nome aos arquivos da pasta java
+        Layout
+            O layout é a pasta que contem os arquivos responsáveis por cada
+        tela do aplicativo sendo ligados por nome aos arquivos da pasta java
 
-            mipmap
-                É onde ficam os ícones da aplicação, em outro formato.
+        mipmap
+            É onde ficam os ícones da aplicação, em outro formato.
 
-           Values
-                Em values encontramos dois arquivos e uma subpasta:
+       Values
+            Em values encontramos dois arquivos e uma subpasta:
 
-                Colors
-                    Onde ficam listadas todas as cores do aplicativo.
+            Colors
+                Onde ficam listadas todas as cores do aplicativo.
 
-                Strings
-                    Onde ficam listados os textos do aplicativo.
+            Strings
+                Onde ficam listados os textos do aplicativo.
 
-                Themes
-                    Subpasta onde ficam temas diferentes como claro ou noturno.
+            Themes
+                Subpasta onde ficam temas diferentes como claro ou noturno.
 
-            Xml
-                É uma pasta nova.
-
-
-            Gradle Scripts
-                Nessa pasta encontram-se dois arquivos build.gradle, um para o projeto
-            e outro onde encontra-se a versão Android mínima e a mais atual, como
-            compilador, além de uma seção contendo todos os pacotes implementados
-            pela versão Android escolhida, podendo ali adicionar pacotes extras.
+        Xml
+            É uma pasta nova.
 
 
-            Convenções de código
+        Gradle Scripts
 
-                Para escrever nomes, usa-se a seguinte padronização:
-
-                camelCase:
-                (Primeira palavra minúscula, as seguintes maiúsculas, sem
-                espaços)
-                    Variáveis
-                    Métodos
-                    Atributos de classe
-                    Parâmetros
-                    Funções
-
-                PascalCase:
-                (Todas as palavras maiúsculas, sem espaços)
-                    Classes
-
-                snake_case:
-                (Todas as palavras minúsculas, com o under line ao invés de espaços)
-
-                    Variáveis de xml(textos, Id, (...))
-
-                SCREAMING_SNAKE_CASE:
-                (Todas as letras maiúsculas, com o under line ao invés de espaços)
-                    Constantes
-
-                Kebab-case:
-                (Todas as palavras minúsculas, com o traço ao invés de espaços)
+            Nessa pasta encontram-se dois arquivos build.gradle, um para o projeto
+        e outro onde encontra-se a versão Android mínima e a mais atual, como
+        compilador, além de uma seção contendo todos os pacotes implementados
+        pela versão Android escolhida, podendo ali adicionar pacotes extras.
 
 
-                Além disso, usa-se a palavra reservada const, para declarar valores
-            constantes, junto dos imports.
+        Convenções de código
 
-            Ordenação na classe:
+            Para escrever nomes, usa-se a seguinte padronização:
 
-                Variáveis de escopo da classe
-                inicializações
-                Construtores secundários
-                Objects
-                Companion objects
-                Override
-                Overloads (agrupados entre si)
+        camelCase:
+        (Primeira palavra minúscula, as seguintes maiúsculas, sem
+        espaços)
+            Variáveis
+            Métodos
+            Atributos de classe
+            Parâmetros
+            Funções
+
+        PascalCase:
+        (Todas as palavras maiúsculas, sem espaços)
+            Classes
+
+        snake_case:
+        (Todas as palavras minúsculas, com o under line ao invés de espaços)
+
+            Variáveis de xml(textos, Id, (...))
+
+        SCREAMING_SNAKE_CASE:
+        (Todas as letras maiúsculas, com o under line ao invés de espaços)
+            Constantes
+
+        Kebab-case:
+        (Todas as palavras minúsculas, com o traço ao invés de espaços)
 
 
-            Ao criar uma classe em um arquivo android, respeitar a nomenclatura:
+            Além disso, usa-se a palavra reservada const, para declarar valores
+        constantes, junto dos imports.
 
-            Componente      Classe               Nome do layout
-            ------------------------------------------------------------------
-            Activity        UserProfileActivity  activity_user_profile
-            Fragment        SignUpFragment       fragment_sign_up
-            Dialog          ChangePasswordDialog  dialog_change_password
+        Ordenação na classe:
 
-                Cada classe tem seu nome, seguido do tipo do arquivo e o inverso
-            para o xml.
-                Além disso, cada elemento do xml leva seu tipo como prefixo de seu
-            nome em snake_case.
+            Variáveis de escopo da classe
+            inicializações
+            Construtores secundários
+            Objects
+            Companion objects
+            Override
+            Overloads (agrupados entre si)
+
+
+        Ao criar uma classe em um arquivo android, respeitar a nomenclatura:
+
+        Componente      Classe               Nome do layout
+        ------------------------------------------------------------------
+        Activity        UserProfileActivity  activity_user_profile
+        Fragment        SignUpFragment       fragment_sign_up
+        Dialog          ChangePasswordDialog  dialog_change_password
+
+            Cada classe tem seu nome, seguido do tipo do arquivo e o inverso
+        para o xml.
+            Além disso, cada elemento do xml leva seu tipo como prefixo de seu
+        nome em snake_case.
 
 
         Lambda

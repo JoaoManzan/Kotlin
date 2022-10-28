@@ -59,7 +59,7 @@
 
                     android: layout_height = "wrap_content"
 
-        Boas Práticas
+    Boas Práticas
 
             Os elementos sempre devem ser escritos com "self closing tags",
          fechando eles, neles mesmos:
@@ -69,8 +69,8 @@
             Por último os elementos diferenciam maiúscula e minúscula:
 
                 <Button /> != <button />
-*//*
-        Linear Layout
+
+    Linear Layout
 
             É um tipo de viewGroup que agrupa os elementos vertical ou
         horizontalmente e com a propriedade de fracionar a tela, para tal é
@@ -102,9 +102,9 @@
 
             </LinearLayout>
 
-        Atributos comuns de layout
+    Atributos comuns de layout
 
-            Existem alguns atributos básicos de um layout que podem ser definidos:
+        Existem alguns atributos básicos de um layout que podem ser definidos:
 
             Background
                 É o comando usando para alterar a cor de fundo do view ou
@@ -216,21 +216,21 @@
 
                 Esse elemento também possui seus próprios comandos:
 
-                Input type:
-                    Define o tipo de variável que o campo recebe e atribui como o
-                usuário vai interagir com o campo:
+            Input type:
+                Define o tipo de variável que o campo recebe e atribui como o
+            usuário vai interagir com o campo:
 
                         android:inputType="*tipoDeEntrada*"
 
-                    Em casos de number, o usuário terá um teclado só com números,
-                ja um textMultiLine, permite o usuário escrever textos e separar as
-                linhas com o Enter.
+                Em casos de number, o usuário terá um teclado só com números,
+            ja um textMultiLine, permite o usuário escrever textos e separar as
+            linhas com o Enter.
 
-                Hint:
-                    Mostra um texto fantasma, que sumirá com qualquer entrada,
-                usado para avisar o usuário o que deve ser escrito no campo.
+            Hint:
+                Mostra um texto fantasma, que sumirá com qualquer entrada,
+            usado para avisar o usuário o que deve ser escrito no campo.
 
-                         android:hint="*nomeDoCampo*"
+                     android:hint="*nomeDoCampo*"
 
 
             Button
@@ -271,190 +271,33 @@
 
                 android:id="@+id/ *type_name*"
 
-*//*
+    Relative Layout
 
-        Identificação de elementos
+            Relative layout é um view group, como o linear layout, que define a
+        disposição dos elementos na tela, com o intuito de evitar cascatas de
+        linear layouts.
+            Assim sendo, ele apresenta comandos próprios para tal:
 
-            View Binding
+            layout_align(...):
+                Possui diversas variações e vai definir um elemento primário
+            para alinhar o elemento desejado.
+                Pode ser true or false ou pode referenciar o id de outro objeto.
 
-                É o conector entre a parte interativa do layout e a activity, para
-            tal é necessário habilitar o view binding no arquivo gradle:
-            gradle scripts > build.gradle (module) > object android {}:
+                layout_alignEnd= "@id/ *elemento_name*"
 
-                buildFeatures {
-                    viewBinding true
-                }
+            layout_center(...):
+                Também possui diversas variações e vai alinhar um elemento com o
+            centro ou centro mais a sua especificação(vertical, horizontal)
 
-                Além disso, cada activity terá sua própria linha de código
-            vinculando-o a um arquivo de layout, que pode ser alterado para incluir
-            as funcionalidades do view binding:
+            layout_below:
+                Permite alinhar um elemento com base em outro:
 
-                Padrão:
-                override fun onCreate(savedInstanceState: Bundle?) {
-                    super.onCreate(savedInstanceState)
-                    setContentView(R.layout.activity_main)
-                }
+                layout_below= "@id/ *elemento_name*"
 
-                Alterada:
-                private lateinit var binding: ActivityMainBinding
+    Elevation
 
-                override fun onCreate(savedInstanceState: Bundle?) {
-                    super.onCreate(savedInstanceState)
-                    binding = ActivityMainBinding.inflate(layoutInflater)
-                    setContentView(binding.root)
-                }
+        O comando elevation gera uma sombra para o elemento.
 
-                Nessa alteração, cria-se uma lateinit var, sendo instanciada após
-            a criação da activity pela fun onCreate pelo comando .inflate e, por
-            fim, muda-se para setContentView(binding.root).
-                Note que para tudo isso é preciso importar uma biblioteca própria
-            para ter acesso ao ActivityMainBinding:
+        android:elevation="*tamanho*dp"
 
-                import com.example.myapplication.databinding.ActivityMainBinding
-
-            Evento de click
-
-                 Para implementar um evento de clique usa-se:
-
-                onClickListener
-
-                    É uma interface do tipo view que pode ser implementada para
-                dar acesso ao comando onClickListener ou pode ser instanciada em
-                uma classe anônima na própria chamada.
-
-                class MainActivity : AppCompatActivity(), View.OnClickListener {
-
-                    private lateinit var binding: ActivityMainBinding
-
-                override fun onCreate(savedInstanceState: Bundle?) {
-                    super.onCreate(savedInstanceState)
-                    binding = ActivityMainBinding.inflate(layoutInflater)
-                    setContentView(binding.root)
-                    binding.buttonCalculate.setOnClickListener(this)
-                }
-
-                    override fun onClick(view: View) {
-                        if (view.id == R.id.*buttonId*){
-                            (...)
-                        }
-                }
-
-            Plugin
-
-                Ao criar um projeto mais antigo, a biblioteca Kotlin android
-            extensions era importada, por ela é possível identificar os elementos,
-            porém é um código deprecated(que será descontinuado), então o ideal é
-            evitar.
-
-            findViewById<*Id*>
-
-                Esse método é o mais comum e tradicional, porém, ele precisa ser
-            inteiro mapeado na mão, criando uma variável para cada parte da tela,
-            além de, em grande escala, consumir mais memória do que o view binding.
-
-                 class MainActivity : AppCompatActivity() {
-
-                    private lateinit var *nomeView*: *tipo*
-                    private lateinit var *nomeView1*: *tipo1*
-                    (...)
-
-                override fun onCreate(savedInstanceState: Bundle?) {
-                    super.onCreate(savedInstanceState)
-                    setContentView(R.layout.activity_main)
-
-                    *nomeView* = findViewById<*tipoView*>(R.id.*nome_view*)
-                    *nomeView1* = findViewById(R.id.*nome_view1*)
-                    (...)
-
-                    *nomeView*.setOnClickListener {
-                    *nomeView1*.setText(R.string.text_view_phraseOne)
-                    (...)
-                    }
-
-                }}
-
-            Toast
-
-                Em um botão é possível gerar uma notificação de clique com o
-            comando toast:
-
-        Toast.makeText(context: this, text: "*texto*", Toast.LENGTH_SHORT).show()
-
-                O comando .show() mostra o toast.
-
-
-        Relative Layout
-
-                Relative layout é um view group, como o linear layout, que define a
-            disposição dos elementos na tela, com o intuito de evitar cascatas de
-            linear layouts.
-                Assim sendo, ele apresenta comandos próprios para tal:
-
-                layout_align(...):
-                    Possui diversas variações e vai definir um elemento primário
-                para alinhar o elemento desejado.
-                    Pode ser true or false ou pode referenciar o id de outro objeto.
-
-                    layout_alignEnd= "@id/ *elemento_name*"
-
-                layout_center(...):
-                    Também possui diversas variações e vai alinhar um elemento com o
-                centro ou centro mais a sua especificação(vertical, horizontal)
-
-                layout_below:
-                    Permite alinhar um elemento com base em outro:
-
-                    layout_below= "@id/ *elemento_name*"
-
-        Elevation
-
-            O comando elevation gera uma sombra para o elemento.
-
-            android:elevation="*tamanho*dp"
-
-       Temas
-            Na pasta values, existe uma subpasta themes, responsável por gerar a
-        barra de utilitários do android. É possível alterar a cor padrão mudando a
-        cor primária variante.
-            Além disso existe a barra com o nome do aplicativo, que pode ser
-        desativada na função onCreate usando o comando:
-
-               supportActionBar?.hide()
-
-        Tela principal
-
-            É possível criar uma nova activity:
-
-        app > java > com.exemple.*nomeProjeto* > botão direito > new > Activity >
-        Empty Activity
-
-        app > res > layout > botão direito > new > Activity > Empty Activity
-
-            Ao cria-la, é possível alterar-la para ser a tela inicial de duas
-        formas, ou marcando a box na criação da activity, que irá setar
-        automaticamente, ou alterar no android manifest.
-
-        app > manifest > AndroidManifest.xml
-
-            Nele se encontram todas as activities, e a tela inicial possui o
-        seguinte código:
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
-            Para altera-la basta mover o respectivo código para a nova tela inicial e
-        inverter de ambas o:
-
-            android:exported="true"
-
-            Também no manifest é possível mudar o ícone do aplicativo:
-
-            android:icon="@mipmap/*app_logo*"
-            android:label="@string/app_name"
-            android:roundIcon="@mipmap/*app_logo*"
-
-            O padrão é ser um mipmap o ícone do aplicativo.
 */
