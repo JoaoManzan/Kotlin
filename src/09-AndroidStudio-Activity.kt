@@ -157,24 +157,56 @@
 
             O padrão é ser um mipmap o ícone do aplicativo.
 
-        Intent
+        StartActivity
 
             Para transpor o usuário de uma tela à outra, é preciso usar o comando
-        intent e vincula-lo as duas activities, porem a segunda como uma java class:
+        startActivity e vincula-lo a uma intenção com duas activities de parâmetro,
+        porém a segunda como uma java class:
 
             startActivity(Intent(this,*otherActivity*::class.java))
             finish()
 
-            Assim inicia-se a activity, instancia-se a Intent com as duas activities
-        de parâmetro, transfere o usuário para a próxima pagina e, caso queira,
-        pode-se desabilitar a activity anterior com o comando finish, para não ser mais
-        acessível.
+            Assim inicia-se a nova activity, instancia-se a Intent com as duas
+        activities de parâmetro, transfere o usuário para a próxima pagina e,
+        caso queira, pode-se desabilitar a activity anterior com o comando finish,
+        para não ser mais acessível.
 
 
         SharedPreferences
 
-            É um recurso que permite transitar informações
+            É um recurso que permite transitar informações concatenando uma chave com
+        uma informação.
+            Ele consiste em criar uma variável do tipo SharedPreferences que recebe o
+        valor contex.getSharedPreferences com dois parâmetros, a chave desse Shared
+        Preferences somado a um modo de Contex.MODE_*modo*, que define o nível de
+        acesso ao SharedPreferences.
 
+        private val *nomeVal*: SharedPreferences =
+        context.getSharedPreferences("*chaveString*", Context.MODE_PRIVATE)
 
+            Para adicionar informações ao SharedPreferences é preciso criar uma função
+        que edita ele e adiciona a informação como parâmetro atrelada a uma chave do
+        tipo string e a informação. Após isso, aplica o processo.
+
+            fun storeString(*nomeChave*: String, *info*: *tipo*) {
+                this.*nomeVal*.edit().putString(*nomeChave*, *info*).apply()
+            }
+
+            Do mesmo jeito para extrair informação de uma SharedPreferences também é
+        preciso criar uma função, porém que retorna um comando .get*Tipo*, com uma
+        chave do tipo string e um retorno padrão que pode ser uma string vazia, com um
+        operado elvis, que também retorne um valor padrão, para caso seja nula.
+
+            fun getString(*nomeChave*: String): String {
+                return this.*nomeVal*.getString(*nomeChave*, "") ?: ""
+            }
+
+            Esse método pode ser usado apenas em um arquivo, porém é ideal possuir uma
+        classe própria. Nesses exemplos ele referencia this.*nomeVal* para que o
+        SharedPreferences seja aplicado na tela que for executado.
+            Para usar os mesmo, basta instanciar a classe, com o contexto(geralmente
+        this) com um .funções com seus respectivos parâmetros.
+
+            *nomeClasseSharedPreferences*(this).storeString("*NOME_CHAVE*", *info*)
 
 */

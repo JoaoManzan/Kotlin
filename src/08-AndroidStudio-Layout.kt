@@ -271,6 +271,19 @@
 
                 android:id="@+id/ *type_name*"
 
+            Alterando cores
+                Para alterar a cor de um view com o click de um botão é possível
+            usa o comando setColorFilter:
+
+                binding.*nomeView*.setColorFilter(R.color.white)
+
+                Porém, ele apenas adiciona a cor acida da base, misturando às duas,
+            então usa-se como parâmetro o comando ContextCompat, de modo a usar
+            apenas a nova cor:
+
+                binding.*nomeView*.setColorFilter(
+                ContextCompat.getColor(context:this, R.color.white))
+
     Relative Layout
 
             Relative layout é um view group, como o linear layout, que define a

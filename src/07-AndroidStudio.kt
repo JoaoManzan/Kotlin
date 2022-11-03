@@ -191,12 +191,24 @@
 
             Constante, ou CONST é uma variável atribuída ao top level do arquivo, na
         área junto aos imports, sempre com um valor imutável e inicializado. Devido a
-        isso ela poderá ser acessada por qualquer classe ou função do arquivo.
+        isso ela poderá ser acessada por qualquer classe ou função de seu arquivo.
 
             const val  *nome* = *valor*
 
-            A constante também pode ser declarada em um object ou companion object.
+            A constante também pode ser declarada em um object ou companion object,
+        o que é muito útil para criar uma classe só com constantes e aloca-las a
+        objects para acesso mais controlável.
 
+            class Constants {
 
+                object *Nome* {
+                    const val *NOME_VAL* = "*VALOR*"
+                }
+
+        Mock class
+
+            Ao criar uma classe Kotlin é possível atribuir o nome Mock para
+        identificar-la como um dado "fictício", que deveria vir do banco de dados,
+        mas esta vindo de uma classe.
 
 */
