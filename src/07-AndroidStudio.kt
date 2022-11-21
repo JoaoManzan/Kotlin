@@ -211,4 +211,22 @@
         identificar-la como um dado "fictício", que deveria vir do banco de dados,
         mas esta vindo de uma classe.
 
+        Android jetpack
+
+            Antigamente o projeto android possuía uma biblioteca de implementações que
+        entre outros, era responsável pela atualização do aplicativo, porém ao faze-lo
+        era necessário atualizar o app inteiro, agora com a nova biblioteca Android X
+        o app atualiza apenas o que foi alterado.
+            Esse tipo de funcionalidade criada para o desenvolvedor é conhecido como
+        Android jetpack.
+
+        Traduzindo um aplicativo
+
+            Para isso é primordial que todos os textos vistos pelo usuário estejam em
+        um arquivo na pasta string.
+            O arquivo string.xml será o padrão, sendo assim, caso não caia em nenhuma
+        lingua com tradução, ele será usado.
+            Para criar um arquivo na pasta string:
+            app > res > values > botão direito > new > Values Resource File > File name:
+            Strings > Available qualifiers > Locale > Language > Country(se necessário)
 */

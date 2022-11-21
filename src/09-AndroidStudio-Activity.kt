@@ -209,4 +209,40 @@
 
             *nomeClasseSharedPreferences*(this).storeString("*NOME_CHAVE*", *info*)
 
+
+        Ciclo de vida de Activity
+
+            Uma activity pode passar por vários momentos durante seu uso, na respectiva
+        ordem:
+
+            OnCreate()
+                É a função que cria a activity.
+
+            OnStart()/OnRestart()
+               É a função responsável por mostrar a tela ao usuário.
+
+            OnResume()
+                É a função que permite ao usuário interagir com os elementos.
+
+            Em uso
+
+            OnPause()
+                É primariamente para momentos em que o sistema interrompe a aplicação,
+            seja uma ligação, mensagem ou etc. Além disso, sempre retornará ao
+            onResume.
+
+            OnStop()
+                É o método que para a visualização da activity, nele é ideal salvar
+            os dados necessários, por ser um método que possibilita mais processamento,
+            e preparar para o encerramento da activity.
+                Esse é o ultimo método chamado normalmente ao se transicionar para
+            outra activity.
+                Além disso o sistema definirá onde a activity retornará, caso o onStop
+            tenha desalocado as coisas, o onCreate é chamado, do contrario o onRestart.
+
+            OnDestroy()
+                É acessado apenas ao finalizar a activity, seja pelo comando finish()
+            ou por fechar a aplicação toda. Nela qualquer alocação de memória será
+            apagada.
+
 */
