@@ -1,63 +1,63 @@
 /*
-     Layout
+    Layout
 
-            O arquivo de layout possui sempre um viewGroup que engloba tudo,
-        views que são os objetos e possíveis viewGroups extras para organização.
-        Essa estrutura liga todos os objetos à tela de código.
+        O arquivo de layout possui sempre um viewGroup que engloba tudo,
+    views que são os objetos e possíveis viewGroups extras para organização.
+    Essa estrutura liga todos os objetos à tela de código.
 
-        View
-            São elementos de interface interativos ou objetos.
-            Também é um tipo de dado referente a qualquer elemento da tela.
+    View
+        São elementos de interface interativos ou objetos.
+        Também é um tipo de dado referente a qualquer elemento da tela.
 
-        View group
-            É um agrupador de elementos que define a posição e comportamentos
-        dos elementos nela.
-            Existem tipos pré-definidos de viewGroups.
-            É possível também agrupar em cascata viewGroups, delimitando áreas
-        com layouts diferentes.
+    View group
+        É um agrupador de elementos que define a posição e comportamentos
+    dos elementos nela.
+        Existem tipos pré-definidos de viewGroups.
+        É possível também agrupar em cascata viewGroups, delimitando áreas
+    com layouts diferentes.
+
+            <LinearLayout>
+                <Button />
+                <Text View />
 
                 <LinearLayout>
                     <Button />
-                    <Text View />
-
-                    <LinearLayout>
-                        <Button />
-                        <Button />
-                    </LinearLayout>
-
+                    <Button />
                 </LinearLayout>
 
-
-        Tamanhos
-
-            Existem 2 unidades de medida de tamanhos, que resolvem o problema
-        da variação de pixels entre dispositivos:
-
-            sp:
-                Ou, escale independent pixels, é usado para definir um tamanho
-            para textos em geral.
-
-                    android: textSize = "12sp"
-
-            dp:
-                Ou, density independent pixel, é usado para definir o tamanho
-            de elementos.
-
-                    android: layout_margin = "12dp"
+            </LinearLayout>
 
 
-            Exitem também 2 comandos dinâmicos para atribuição de tamanho:
+    Tamanhos
 
-            match parent:
-                Faz o elemento receber os atributos de tamanho de seu elemento
-            "mãe" ou "superior".
+        Existem 2 unidades de medida de tamanhos, que resolvem o problema
+    da variação de pixels entre dispositivos:
 
-                    android: layout_width = "match_parent"
+        sp:
+            Ou, escale independent pixels, é usado para definir um tamanho
+        para textos em geral.
 
-            wrap content:
-                Faz o elemento se adequar ao tamanho de seu conteúdo.
+                android: textSize = "12sp"
 
-                    android: layout_height = "wrap_content"
+        dp:
+            Ou, density independent pixel, é usado para definir o tamanho
+        de elementos.
+
+                android: layout_margin = "12dp"
+
+
+        Exitem também 2 comandos dinâmicos para atribuição de tamanho:
+
+        match parent:
+            Faz o elemento receber os atributos de tamanho de seu elemento
+        "mãe" ou "superior".
+
+                android: layout_width = "match_parent"
+
+        wrap content:
+            Faz o elemento se adequar ao tamanho de seu conteúdo.
+
+                android: layout_height = "wrap_content"
 
     Boas Práticas
 
@@ -312,5 +312,44 @@
         O comando elevation gera uma sombra para o elemento.
 
         android:elevation="*tamanho*dp"
+
+  Constraint layout
+
+        É o view model padrão do android studio, sendo uma evolução aos outros dois,
+    por ter muito mais flexibilidade e funções próprias.
+        Ele baseia o posicionamento de um objeto em duas direções que precisão ser
+    informadas, podendo aceitar mais e ligar um objeto a outro.
+        Um detalhe importante é evitar o uso do match_parent por não se adequar bem
+    a esse view model, ao invés, usar 0dp.
+
+        Bias
+            Permite manipular o quanto um objeto está para cada lado, porém precisa
+        que o objeto esteja sendo puxado por, ao menos, dois lados opostos. O valor do
+        bias vai de 0,0 à 1,0, sendo esse valor responsável por determinar o quanto.
+            Por fim, ele pode ter duas orientações, vertical ou horizontal:
+
+            app:layout_constraintVertical_bias="*Valor*"
+            app:layout_constraintHorizontal_bias="*Valor*"
+
+        Circle
+            É o método que permite alocar um objeto em um círculo ao redor de outro
+        objeto.
+
+            cod
+
+            Ela possui 3 funções:
+
+
+
+        Chain
+            É um método que permite ligar um object ào menos outro object, sempre
+        com cada elo referenciando seus vizinhos, além de possuir formas próprias de
+        distribui-los:
+
+            cod
+
+            Fun1
+
+
 
 */

@@ -72,7 +72,7 @@
         porém é um código deprecated(que será descontinuado), então o ideal é
         evitar.
 
-        findViewById<*Id*>
+        findViewById<>
 
             Esse método é o mais comum e tradicional, porém, ele precisa ser
         inteiro mapeado na mão, criando uma variável para cada parte da tela,
@@ -245,4 +245,4 @@
             ou por fechar a aplicação toda. Nela qualquer alocação de memória será
             apagada.
 
-*/
+      */
